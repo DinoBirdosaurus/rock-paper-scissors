@@ -1,4 +1,30 @@
-let buttons = document.querySelectorAll("button");
+let buttons = document.querySelectorAll(".button");
+let computerSelection;
+//score keeping
+let userScore = 0;
+let compScore = 0;
+
+//player input
+/*
+const getPlayerChoice = userInput => {
+    userInput = prompt("Rock, Paper or Scissor?").toLowerCase();
+    if (userInput === "rock" || userInput === "paper" || userInput === "scissors") {
+        return userInput;
+    } else {
+        console.log("Error, please type: rock, paper or scissors.");
+    }
+};
+*/
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const img = button.querySelector("img");
+        playerSelection = img.alt.toLowerCase();
+
+        playRound(playerSelection, computerSelection);
+        console.log(e);
+    });
+});
 // computer choice randomizer
 const getComputerChoice = () => {
     const randomNumber = Math.floor(Math.random() * 3);
@@ -12,20 +38,6 @@ const getComputerChoice = () => {
     }
 
 };
-//score keeping
-let userScore = 0;
-let compScore = 0;
-
-//player input
-const getPlayerChoice = userInput => {
-    userInput = prompt("Rock, Paper or Scissor?").toLowerCase();
-    if (userInput === "rock" || userInput === "paper" || userInput === "scissors") {
-        return userInput;
-    } else {
-        console.log("Error, please type: rock, paper or scissors.");
-    }
-};
-
 //game logic
 const playRound = (playerSelection, computerSelection) => {
     if (playerSelection === computerSelection) {

@@ -23,3 +23,24 @@ body {
 .weapon-choice {
     text-align: center;
 }
+#scoreBoard-label,
+#scoreBoard-score,
+#results-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   /* border: 1px solid black; */
+    padding: 10px;
+}
+
+.astartes {
+    margin-top: 30px;
+    padding: 0 40px;
+}
+
+.score {
+    padding: 0 40px;
+}
+#results-text {
+    border: 1px solid black;
+}
