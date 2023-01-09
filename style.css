@@ -1,0 +1,25 @@
+body {
+    background-color: dimgrey;
+}
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 200px;
+    min-height: 200px;
+    border: 5px solid black;
+    margin: 30px;
+
+}
+#btn-box {
+    display:  flex;
+    justify-content: center;
+}
+#title {
+    color: darkred;
+    text-align: center;
+}
+
+.weapon-choice {
+    text-align: center;
+}

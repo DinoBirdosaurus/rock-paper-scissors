@@ -1,3 +1,4 @@
+let buttons = document.querySelectorAll("button");
 // computer choice randomizer
 const getComputerChoice = () => {
     const randomNumber = Math.floor(Math.random() * 3);
@@ -66,6 +67,7 @@ const playRound = (playerSelection, computerSelection) => {
 };
 
 //actual game function
+/*
 const game = () => {
     for (let i = 0; i < 5; i++) {
         const playerSelection = getPlayerChoice();
@@ -80,6 +82,8 @@ const game = () => {
 };
 
 game();
+*/
+
 
 
 
