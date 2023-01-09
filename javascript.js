@@ -1,5 +1,6 @@
 let buttons = document.querySelectorAll(".button");
-let computerSelection;
+
+
 //score keeping
 let userScore = 0;
 let compScore = 0;
@@ -7,11 +8,11 @@ let compScore = 0;
 //player input
 /*
 const getPlayerChoice = userInput => {
-    userInput = prompt("Rock, Paper or Scissor?").toLowerCase();
-    if (userInput === "rock" || userInput === "paper" || userInput === "scissors") {
+    userInput = prompt("bolter, storm-shield or Scissor?").toLowerCase();
+    if (userInput === "bolter" || userInput === "storm-shield" || userInput === "chainsword") {
         return userInput;
     } else {
-        console.log("Error, please type: rock, paper or scissors.");
+        console.log("Error, please type: bolter, storm-shield or chainsword.");
     }
 };
 */
@@ -19,10 +20,18 @@ const getPlayerChoice = userInput => {
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
         const img = button.querySelector("img");
-        playerSelection = img.alt.toLowerCase();
-
+        const computerSelection = getComputerChoice();
+        playerSelection = img.alt.toLowerCase(); // this translates image into playerSelection via alt string
         playRound(playerSelection, computerSelection);
-        console.log(e);
+        //showResults();
+        console.log(`You chose: ${capitalize(playerSelection)}`);
+        console.log(`The computer chose: ${capitalize(computerSelection)}`);
+        console.log("Your Score: " + userScore);
+        console.log("Computer Score: " + compScore);
+        console.log("=========================")
+        
+        
+        console.log(button.addEventListener);
     });
 });
 // computer choice randomizer
@@ -30,54 +39,84 @@ const getComputerChoice = () => {
     const randomNumber = Math.floor(Math.random() * 3);
     switch (randomNumber) {
         case 0:
-            return "rock";
+            return "bolter";
         case 1:
-            return "paper";
+            return "storm-shield";
         case 2:
-            return "scissors";
+            return "chainsword";
     }
 
 };
 //game logic
 const playRound = (playerSelection, computerSelection) => {
+    let result = "";
     if (playerSelection === computerSelection) {
-        userScore++;
-        compScore++;
-        return "Draw!"
+        userScore;
+        compScore;
+        result = "Draw!";
     } 
-    if (playerSelection === "rock")
-        if (computerSelection === "paper") {
+    if (playerSelection === "bolter")
+        if (computerSelection === "storm-shield") {
             compScore++;
-            return "You Lose! Paper covers Rock.";
+            result =
+                `You Lose! ${capitalize(
+                computerSelection)} blocks ${playerSelection}.`;
         } else {
-            if (computerSelection === "scissors") {
+            if (computerSelection === "chainsword") {
                 userScore++;
-                return "You Win! Rock crushes Scissors";
+                result = 
+                `You Win! ${capitalize(
+                playerSelection)} has range advantage over ${computerSelection}`;
             }
         }
-    if (playerSelection === "paper")
-        if (computerSelection === "rock") {
+    if (playerSelection === "storm-shield")
+        if (computerSelection === "bolter") {
             userScore++;
-            return "You Win! Paper covers Rock.";
+            result =
+             `You Win! ${capitalize(
+             playerSelection)} blocks ${computerSelection}.`;
         } else {
-            if (computerSelection === "scissors") {
+            if (computerSelection === "chainsword") {
                 compScore++;
-                return "You Lose! Scissors cut Paper.";
+              result = 
+              `You Lose! ${capitalize(
+                computerSelection)} cuts through ${playerSelection}.`;
             }
         }
-    if (playerSelection === "scissors")
-        if (computerSelection === "rock") {
+    if (playerSelection === "chainsword")
+        if (computerSelection === "bolter") {
             compScore++;
-            return "You Lose! Rock crushes Scissors.";
+            result = 
+            `You Lose! ${capitalize(
+                computerSelection)} has range advantage over ${playerSelection}.`;
         } else {
-            if (computerSelection === "paper") {
+            if (computerSelection === "storm-shield") {
                 userScore++;
-                return "You Win! Scissors cut Paper.";
+               result = 
+               `You Win! ${capitalize(
+                playerSelection)} cuts through ${computerSelection}.`;
             }
         }
+    document.getElementById("results-text").innerHTML = result;
+    return
     
 };
+const capitalize = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
+
+const storeUserScore = () => {
+    let userScoreBoard = document.querySelector("#playerScore");
+
+    userScoreBoard.textContent = userScore;
+};
+
+const storeCompScore = () => {
+    let cpuScoreBoard = document.querySelector("#opponentScore");
+
+    cpuScoreBoard.textContent = compScore;
+};
 //actual game function
 /*
 const game = () => {
