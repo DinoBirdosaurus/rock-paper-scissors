@@ -29,10 +29,7 @@ buttons.forEach((button) => {
         console.log("Your Score: " + userScore);
         console.log("Computer Score: " + compScore);
         console.log("=========================")
-        
-        
-        console.log(button.addEventListener);
-    });
+    })
 });
 // computer choice randomizer
 const getComputerChoice = () => {
@@ -97,6 +94,8 @@ const playRound = (playerSelection, computerSelection) => {
                 playerSelection)} cuts through ${computerSelection}.`;
             }
         }
+    document.getElementById("playerScore").innerHTML = userScore;
+    document.getElementById("opponentScore").innerHTML = compScore;
     document.getElementById("results-text").innerHTML = result;
     return
     
@@ -105,18 +104,6 @@ const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-
-const storeUserScore = () => {
-    let userScoreBoard = document.querySelector("#playerScore");
-
-    userScoreBoard.textContent = userScore;
-};
-
-const storeCompScore = () => {
-    let cpuScoreBoard = document.querySelector("#opponentScore");
-
-    cpuScoreBoard.textContent = compScore;
-};
 //actual game function
 /*
 const game = () => {
