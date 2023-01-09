@@ -1,11 +1,12 @@
 let buttons = document.querySelectorAll(".button");
-
+const evalText = document.querySelector("#eval-text");
+const eval = document.querySelector("#eval");
 
 //score keeping
 let userScore = 0;
 let compScore = 0;
 
-//player input
+//old player input before ui addition
 /*
 const getPlayerChoice = userInput => {
     userInput = prompt("bolter, storm-shield or Scissor?").toLowerCase();
@@ -23,12 +24,16 @@ buttons.forEach((button) => {
         const computerSelection = getComputerChoice();
         playerSelection = img.alt.toLowerCase(); // this translates image into playerSelection via alt string
         playRound(playerSelection, computerSelection);
-        //showResults();
+    //console.log()s for debugging
         console.log(`You chose: ${capitalize(playerSelection)}`);
         console.log(`The computer chose: ${capitalize(computerSelection)}`);
         console.log("Your Score: " + userScore);
         console.log("Computer Score: " + compScore);
         console.log("=========================")
+    // win condition
+        if (userScore === 5 || compScore === 5) {
+            declareWinner();
+        }
     })
 });
 // computer choice randomizer
@@ -44,6 +49,7 @@ const getComputerChoice = () => {
     }
 
 };
+
 //game logic
 const playRound = (playerSelection, computerSelection) => {
     let result = "";
@@ -94,17 +100,25 @@ const playRound = (playerSelection, computerSelection) => {
                 playerSelection)} cuts through ${computerSelection}.`;
             }
         }
+    
     document.getElementById("playerScore").innerHTML = userScore;
     document.getElementById("opponentScore").innerHTML = compScore;
     document.getElementById("results-text").innerHTML = result;
     return
     
 };
+
 const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-//actual game function
+const declareWinner = () => {
+    marineEval();
+    if(userScore > compScore) {
+
+    }
+}
+//old game function
 /*
 const game = () => {
     for (let i = 0; i < 5; i++) {
