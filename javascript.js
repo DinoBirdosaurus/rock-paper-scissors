@@ -31,9 +31,7 @@ buttons.forEach((button) => {
         console.log("Computer Score: " + compScore);
         console.log("=========================")
     // win condition
-        if (userScore === 5 || compScore === 5) {
-            declareWinner();
-        }
+        
     })
 });
 // computer choice randomizer
@@ -50,6 +48,10 @@ const getComputerChoice = () => {
 
 };
 
+const capitalize = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 //game logic
 const playRound = (playerSelection, computerSelection) => {
     let result = "";
@@ -58,66 +60,42 @@ const playRound = (playerSelection, computerSelection) => {
         compScore;
         result = "Draw!";
     } 
-    if (playerSelection === "bolter")
-        if (computerSelection === "storm-shield") {
-            compScore++;
+    else if (
+        (playerSelection == "bolter" && computerSelection == "chainsword") ||
+        (playerSelection == "storm-shield" && computerSelection == "bolter") ||
+        (playerSelection == "chainsword" && computerSelection == "storm-shield")) {
+
+            userScore += 1;
             result =
-                `You Lose! ${capitalize(
-                computerSelection)} blocks ${playerSelection}.`;
-        } else {
-            if (computerSelection === "chainsword") {
-                userScore++;
-                result = 
                 `You Win! ${capitalize(
-                playerSelection)} has range advantage over ${computerSelection}`;
+                playerSelection)} beats ${computerSelection}.`;
+
+            if (userScore == 5) {
+                result = "Congrats! You pass the training module.";
             }
-        }
-    if (playerSelection === "storm-shield")
-        if (computerSelection === "bolter") {
-            userScore++;
-            result =
-             `You Win! ${capitalize(
-             playerSelection)} blocks ${computerSelection}.`;
-        } else {
-            if (computerSelection === "chainsword") {
-                compScore++;
-              result = 
-              `You Lose! ${capitalize(
-                computerSelection)} cuts through ${playerSelection}.`;
-            }
-        }
-    if (playerSelection === "chainsword")
-        if (computerSelection === "bolter") {
-            compScore++;
+        
+            
+    }
+     else {
+            compScore += 1;    
             result = 
-            `You Lose! ${capitalize(
-                computerSelection)} has range advantage over ${playerSelection}.`;
-        } else {
-            if (computerSelection === "storm-shield") {
-                userScore++;
-               result = 
-               `You Win! ${capitalize(
-                playerSelection)} cuts through ${computerSelection}.`;
+                `You Lose! ${capitalize(
+                computerSelection)} beats ${playerSelection}`;
             }
-        }
+        
+            if (compScore == 5) {
+                result = "You failed! Try Again!";
+            }    
+              
     
     document.getElementById("playerScore").innerHTML = userScore;
     document.getElementById("opponentScore").innerHTML = compScore;
     document.getElementById("results-text").innerHTML = result;
-    return
+};    
     
-};
 
-const capitalize = (str) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-}
 
-const declareWinner = () => {
-    marineEval();
-    if(userScore > compScore) {
 
-    }
-}
 //old game function
 /*
 const game = () => {
